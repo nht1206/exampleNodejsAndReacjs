@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class HomeTopMenu extends Component {
+    isAddNewNote = () => {
+        const {getEditObject} = this.props;
+        const {changeEditStatus} = this.props;
+        getEditObject({});
+        changeEditStatus();
+    }
     render() {
         return (
             <div>
@@ -14,7 +20,7 @@ class HomeTopMenu extends Component {
                                 <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                             </li>
                             <li className="nav-item">
-                                <a onClick={() => this.props.changeEditStatus()} className="nav-link" >Add New Note</a>
+                                <a onClick={() => this.isAddNewNote()} className="nav-link" >Add New Note</a>
                             </li>
                         </ul>
                     </div>
@@ -29,6 +35,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         changeEditStatus: () => {
             dispatch({type: 'CHANGE_EDIT_STATUS'});
+        },
+        getEditObject: (editObject) => {
+            dispatch({type: 'GET_EDIT_OBJECT', editObject});
         }
     }
 }
