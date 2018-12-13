@@ -1,40 +1,21 @@
-//xu ly voi server tai day
+import { applyMiddleware } from 'redux';
+import thunk from 'redux-thunk'; 
 const redux = require('redux');
-const axios = require('axios');
 var mInitialState = {
     editStatus: false,
     notes: [],
     editObject: {}
 }
-var addNew = (note) => {
-    axios.post('/api/addnew', {
-        title: note.title,
-        content: note.content
-    });
-}
-
-var updateNote = async (note) => {
-    return axios.put('/api/updatenote', note);
-}
-
-var deleteNote = async (id) => {
-    return axios.post('/api/deletenote', {
-        _id: id
-    });
-}
-
 const mReducer = (state = mInitialState, action) => {
     switch (action.type) {
         case "GET_NOTES":
-            return { ...state, notes: action.notes }
+            return { ...state, notes: action.payload.notes }
         case "ADD_NEW":
-            addNew(action.newNote);
-            return { ...state, notes: [...state.notes, action.newNote ]};
+            return { ...state, notes: [...state.notes, action.payload.newNote ]};
         case "DELETE_NOTE":
-            deleteNote(action.noteID);
             let updateNotes = [];
             state.notes.map((value, key) => {
-                if (value._id !== action.noteID){
+                if (value._id !== action.payload.id){
                     return updateNotes.push(value);
                 }
                 return 0;
@@ -43,13 +24,12 @@ const mReducer = (state = mInitialState, action) => {
         case "CHANGE_EDIT_STATUS":
             return { ...state, editStatus: !state.editStatus }
         case 'GET_EDIT_OBJECT':
-            return { ...state, editObject: action.editObject }
+            return { ...state, editObject: action.payload.editObject }
         case 'UPDATE_EDIT_OBJECT':
-            updateNote(action.noteEdited);
             var newNotes = [];
             state.notes.map((value, key) => {
-                if (value._id === action.noteEdited._id) {
-                    return newNotes.push(action.noteEdited);
+                if (value._id === action.payload.noteIsEdited._id) {
+                    return newNotes.push(action.payload.noteIsEdited);
                 } else {
                     return newNotes.push(value);
                 }
@@ -59,9 +39,8 @@ const mReducer = (state = mInitialState, action) => {
             return state;
     }
 }
-
-let mStore = redux.createStore(mReducer);
-mStore.subscribe(() => {
-    console.log(mStore.getState());
-});
+let mStore = redux.createStore(mReducer, applyMiddleware(thunk));
+// mStore.subscribe(() => {
+//     console.log(mStore.getState());
+// });
 export default mStore;

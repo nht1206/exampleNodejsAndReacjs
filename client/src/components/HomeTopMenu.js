@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { changeEditStatus, getEditObject } from '../actions';
 
 class HomeTopMenu extends Component {
     isAddNewNote = () => {
@@ -32,14 +33,17 @@ class HomeTopMenu extends Component {
     }
 }
 const mapStateToProps = (state, ownProps) => {
+    return {
+        
+    }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         changeEditStatus: () => {
-            dispatch({type: 'CHANGE_EDIT_STATUS'});
+            dispatch(changeEditStatus());
         },
         getEditObject: (editObject) => {
-            dispatch({type: 'GET_EDIT_OBJECT', editObject});
+            dispatch(getEditObject(editObject));
         }
     }
 }

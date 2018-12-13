@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { addNew, updateNotes, changeEditStatus } from '../actions';
 //import axios from 'axios';
 
 
@@ -56,13 +57,13 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         addNote: (note) => {
-            dispatch({type: "ADD_NEW", newNote: note})
+            dispatch(addNew(note));
         },
         editNote: (note) => {
-            dispatch({type: "UPDATE_EDIT_OBJECT", noteEdited: note})
+            dispatch(updateNotes(note));
         },
         changeEditStatus: () => {
-            dispatch({type: 'CHANGE_EDIT_STATUS'});
+            dispatch(changeEditStatus());
         },
     }
 }

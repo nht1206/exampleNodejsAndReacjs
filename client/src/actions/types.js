@@ -1,0 +1,6 @@
+export const GET_NOTES = 'GET_NOTES';
+export const ADD_NEW = 'ADD_NEW';
+export const DELETE_NOTE = 'DELETE_NOTE';
+export const CHANGE_EDIT_STATUS = 'CHANGE_EDIT_STATUS';
+export const GET_EDIT_OBJECT = 'GET_EDIT_OBJECT';
+export const UPDATE_EDIT_OBJECT = 'UPDATE_EDIT_OBJECT';

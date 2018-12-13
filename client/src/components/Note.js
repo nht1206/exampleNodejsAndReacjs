@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import axios from 'axios';
 import { connect } from 'react-redux';
+import { changeEditStatus, getEditObject, deleteNote } from '../actions';
 
 class Note extends Component {
     isEditClick = () => {
@@ -45,13 +46,13 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         changeEditStatus: () => {
-            dispatch({type: 'CHANGE_EDIT_STATUS'});
+            dispatch(changeEditStatus());
         },
         getEditObject: (editObject) => {
-            dispatch({type: 'GET_EDIT_OBJECT', editObject});
+            dispatch(getEditObject(editObject));
         },
         deleteNote: (noteID) => {
-            dispatch({type: 'DELETE_NOTE', noteID});
+            dispatch(deleteNote(noteID));
         }
     }
 }
