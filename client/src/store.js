@@ -7,12 +7,9 @@ var mInitialState = {
     editObject: {}
 }
 var addNew = (note) => {
-    let test = {};
     axios.post('/api/addnew', {
         title: note.title,
         content: note.content
-    }).then((res) => {
-        test = res.data;
     });
 }
 

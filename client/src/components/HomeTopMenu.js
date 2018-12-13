@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class HomeTopMenu extends Component {
     isAddNewNote = () => {
@@ -12,12 +13,13 @@ class HomeTopMenu extends Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-sm navbar-light mb-4" style={{ backgroundColor: '#e3f2fd' }}>
-                    <a className="navbar-brand" href="/">My Notes</a>
+                    <Link className="navbar-brand" to="/">My Notes</Link>
                     <button className="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" />
                     <div className="collapse navbar-collapse justify-content-end" id="collapsibleNavId">
                         <ul className="navbar-nav mt-2 mt-lg-0">
                             <li className="nav-item active">
-                                <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
+                                {/*<a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>*/}
+                                <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
                             </li>
                             <li className="nav-item">
                                 <a onClick={() => this.isAddNewNote()} className="nav-link" >Add New Note</a>
