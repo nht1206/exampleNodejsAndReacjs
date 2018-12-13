@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class HomeTopMenu extends Component {
     render() {
@@ -13,7 +14,7 @@ class HomeTopMenu extends Component {
                                 <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/">Add New Note</a>
+                                <a onClick={() => this.props.changeEditStatus()} className="nav-link" >Add New Note</a>
                             </li>
                         </ul>
                     </div>
@@ -22,5 +23,13 @@ class HomeTopMenu extends Component {
         );
     }
 }
-
-export default HomeTopMenu;
+const mapStateToProps = (state, ownProps) => {
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        changeEditStatus: () => {
+            dispatch({type: 'CHANGE_EDIT_STATUS'});
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HomeTopMenu);

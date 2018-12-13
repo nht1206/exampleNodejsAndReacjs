@@ -22,7 +22,7 @@ router.put('/updatenote', (req, res) => {
     var { _id } = req.body;
     var { content } = req.body;
     var { title } = req.body;
-    Notes.findOneAndUpdate({ _id: _id }, { _id: _id, title: title ,content: content }).then((res, err) => {
+    Notes.findByIdAndUpdate(_id, { title: title ,content: content }).then((res, err) => {
     });
 });
 

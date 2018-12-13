@@ -16,10 +16,13 @@ class EditForm extends Component {
         })
     }
     isClick = () => {
+        const { changeEditStatus } = this.props;
         if (this.state._id){
             this.props.editNote(this.state);
+            changeEditStatus();
         } else {
             this.props.addNote(this.state);
+            changeEditStatus();
         }
     }
     render() {
@@ -57,6 +60,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         editNote: (note) => {
             dispatch({type: "UPDATE_EDIT_OBJECT", noteEdited: note})
+        },
+        changeEditStatus: () => {
+            dispatch({type: 'CHANGE_EDIT_STATUS'});
         },
     }
 }

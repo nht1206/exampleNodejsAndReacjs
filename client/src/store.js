@@ -2,7 +2,7 @@
 const redux = require('redux');
 const axios = require('axios');
 var mInitialState = {
-    editStatus: true,
+    editStatus: false,
     notes: [],
     editObject: {}
 }
@@ -14,7 +14,6 @@ var addNew = (note) => {
     }).then((res) => {
         test = res.data;
     });
-    console.log(test);
 }
 
 var updateNote = async (note) => {

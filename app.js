@@ -18,12 +18,15 @@ if (!dev){
 }
 if (dev){
     app.use(morgan('dev'));
-    app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+    // app.use(express.static(path.resolve(__dirname, 'client', 'build')));
     // app.get('*', (req, res) => {
     //     res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     // })
 }
-
+app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+app.get('*', (req, res) => {
+    res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+})
 const apiRouter = require('./routers/api');
 app.use('/api', apiRouter);
 app.listen(port, () => {
